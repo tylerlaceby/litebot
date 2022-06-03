@@ -10,11 +10,7 @@ const name = "litebot-core";
 
 const options: Plug.Options = {
 	name,
-	url: "https://deno.land/x/litebot/lib/core",
-	// Becomes:
-	// darwin: "https://example.com/some/path/libtest_lib.dylib"
-	// windows: "https://example.com/some/path/test_lib.dll"
-	// linux: "https://example.com/some/path/libtest_lib.so"
+	url: "https://deno.land/x/litebot/core",
 };
 
 // Drop-in replacement for `Deno.dlopen`
