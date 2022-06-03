@@ -10,10 +10,6 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/tylerlaceby/litebot">
-
-  </a>
-
 <h3 align="center"> 🪶 Litebot 🤖</h3>
 
   <p align="center">
@@ -22,11 +18,11 @@
     fine control over the keyboard and mouse. OSX & Windows only.
     <br />
     <br />
-    <a href="https://github.com/tylerlaceby/litebot">Docs</a>
+    <a target="_blank" href="https://doc.deno.land/https://deno.land/x/litebot/mod.ts">Docs</a>
     ·
-    <a href="https://github.com/tylerlaceby/litebot/issues">Report Bug</a>
+    <a target="_blank" href="https://github.com/tylerlaceby/litebot/issues">Report Bug</a>
     ·
-    <a href="https://github.com/tylerlaceby/litebot/issues">Request Feature</a>
+    <a target="_blank" href="https://github.com/tylerlaceby/litebot/issues">Request Feature</a>
   </p>
 </div>
 
@@ -154,4 +150,3 @@ Project Link: [https://github.com/tylerlaceby/litebot](https://github.com/tylerl
 [license-url]: https://github.com/tylerlaceby/litebot/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/tyler-laceby-b94b27157
-[product-screenshot]: images/screenshot.pngs
