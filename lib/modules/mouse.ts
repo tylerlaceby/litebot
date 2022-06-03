@@ -6,9 +6,8 @@ export const cursor_pos = (): Cordinate => {
 	// from C if everything is successful in the system call.
 
 	// the values will remain [ 0 , 0 ] if there is an error.
-	const pointer = new Uint32Array(2);
+	const pointer = new Int32Array(2);
 	litebot._CursorCordinates(pointer);
-
 	// create cordinate from tuple.
 	const cords: Cordinate = { x: pointer[0], y: pointer[1] };
 	return cords;

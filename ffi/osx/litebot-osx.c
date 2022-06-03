@@ -7,7 +7,7 @@
 // ****    OSX BUILDS DONT WORK   *****
 // ************************************
 
-void _CursorCordinates(unsigned int *outCords)
+void _CursorCordinates(int *outCords)
 {
   outCords[0] = 0;
   outCords[1] = 0;

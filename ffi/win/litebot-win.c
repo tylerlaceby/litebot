@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void _CursorCordinates(unsigned int *outCords)
+void _CursorCordinates(int *outCords)
 {
   POINT p;
   if (!GetCursorPos(&p))
