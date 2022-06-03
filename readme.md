@@ -7,25 +7,22 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/tylerlaceby/litebot">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+
   </a>
 
-<h3 align="center">Litebot</h3>
+<h3 align="center"> 🪶 Litebot 🤖</h3>
 
   <p align="center">
-    Litebot is a Deno package for interacting with the mouse, keyboard and screen. Litebot is written with C and uses Deno & Denos's FFI to interface with the OS.
-    focus of Litebot will be to provide a fast and simple API for writing bots and programs that need
-    information or control over the keyboard and mouse. OSX & Windows only.
-    <br />
-    <a href="https://doc.deno.land/https://deno.land/x/litebot/mod.ts"><strong>Explore the docs »</strong></a>
+    Litebot is a Deno package for interacting with the mouse 🖱️ keyboard ⌨️ and screen 💻. The
+    focus of Litebot is to provide a fast and simple API for writing bots and programs that need
+    fine control over the keyboard and mouse. OSX & Windows only.
     <br />
     <br />
-    <a href="https://github.com/tylerlaceby/litebot">View Demo</a>
+    <a href="https://github.com/tylerlaceby/litebot">Docs</a>
     ·
     <a href="https://github.com/tylerlaceby/litebot/issues">Report Bug</a>
     ·
@@ -33,36 +30,10 @@
   </p>
 </div>
 
-
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#api">API</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
-
-
-
-
-
-### Built With
-
-* [Deno](https://deno.land/)
-* [Typescript](https://www.typescriptlang.org/)
-* [C](https://en.wikipedia.org/wiki/C_(programming_language))
-
-
+<br/>
+<hr/>
+<br/>
+<br/>
 
 
 <!-- GETTING STARTED -->
