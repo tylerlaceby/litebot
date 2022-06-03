@@ -1,3 +1,3 @@
-- Litebot
+# Litebot
 
 Controls
