@@ -1,9 +1,9 @@
-import * as MOUSE_LIB from "./modules/mouse.ts";
+import { cursor_pos } from "./modules/mouse.ts";
 
 /**
  * API for interacting with the users mouse.
  */
-export const mouse = MOUSE_LIB;
+export const mouse = { cursor_pos };
 
 /**
  * Litebot API for interacting and controlling physical IO on windows and osx machines.
