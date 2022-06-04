@@ -23,3 +23,7 @@ else
 		`\n-- Could not satisy all compilation targets\n Could not compile both targets`,
 		"color: purple; text-decoration: underline"
 	);
+
+// lastly move the version of readme into the /lib folder
+
+Deno.copyFileSync("readme.md", "lib/readme.md");
