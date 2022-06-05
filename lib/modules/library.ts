@@ -4,14 +4,13 @@ import {
 	dirname,
 	fromFileUrl,
 } from "https://deno.land/std@0.142.0/path/mod.ts";
-export const __dirname = dirname(fromFileUrl(import.meta.url));
 const TEST_LITEBOT_MODE = Deno.args.includes("--test-litebot");
 const name = "litebot-core";
 const options: Plug.Options = {
 	name,
 	url: !TEST_LITEBOT_MODE
 		? "https://deno.land/x/litebot/core"
-		: join(__dirname, `../core/${name}.dll`),
+		: join(dirname(fromFileUrl(import.meta.url)), `../core/${name}.dll`),
 };
 
 // verify the os is correct
