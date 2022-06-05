@@ -1,4 +1,4 @@
-import { getMousePos, setMousePos } from "../../mod.ts";
+import { getMousePos, setMousePos } from "https://deno.land/x/litebot/mod.ts";
 
 console.log("The current mouse position is :", getMousePos());
 console.log("Setting the mouse position to: 0, 0");

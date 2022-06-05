@@ -1,4 +1,4 @@
-import { getMousePos } from "../../mod.ts";
+import { getMousePos } from "https://deno.land/x/litebot/mod.ts";
 console.log("Demo of mouse position in realtime:\n");
 
 setInterval(() => {
