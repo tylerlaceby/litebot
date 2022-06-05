@@ -44,7 +44,7 @@ This is an example of how you can get started with Litebot.
 2. Using Litebot Sub-Modules
    ```ts
    import { getMousePos } from "https://deno.land/x/litebot/mod.ts";
-   mouse.getMousePos(); // { x: number, y: number }
+   getMousePos(); // { x: number, y: number }
    ```
 3. Example Scripts
    ```
