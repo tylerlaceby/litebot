@@ -13,7 +13,7 @@
   <p align="center">
     Litebot is a Deno package for interacting with the mouse 🖱️ keyboard ⌨️ and screen 💻. The
     focus of Litebot is to provide a fast and simple API for writing bots and programs that need
-    fine control over the keyboard and mouse. OSX & Windows only.
+    fine control over the keyboard and mouse. Windows only - OSX / Linux Coming soon
     <br />
     <br />
     <a target="_blank" href="https://doc.deno.land/https://deno.land/x/litebot/mod.ts">Docs</a>
@@ -43,14 +43,17 @@ This is an example of how you can get started with Litebot.
 
 2. Using Litebot Sub-Modules
    ```ts
-   import { cursor_pos } from "https://deno.land/x/litebot/mod.ts";
-   mouse.cursor_pos(); // { x: number, y: number }
+   import { getMousePos } from "https://deno.land/x/litebot/mod.ts";
+   mouse.getMousePos(); // { x: number, y: number }
    ```
 3. Example Scripts
    ```
-   deno run -A --unstable https://deno.land/x/litebot/examples/mouse.ts
+   deno run -A --unstable https://deno.land/x/litebot/examples/mouse/mouse.ts
    ```
    - To view more more examples check out https://deno.land/x/litebot/examples/
+   - Mouse Related https://deno.land/x/litebot/examples/mouse/
+   - Keyboard Related https://deno.land/x/litebot/examples/keyboard/
+   - Macros Related https://deno.land/x/litebot/examples/macros/
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -58,18 +61,21 @@ This is an example of how you can get started with Litebot.
 
 ## Usage
 
-Using Litebot is as simple as importing the function / module you want to use and then calling a attached method.
-
-The required dynamic libraries will be installed upon startup so there is no need to worry about OS specific dependecies.
+Currently this library will only work for windows machines. OSX & Linux support are in development.
 
 Lets demonstrate how to use some common Litebot functions.
 
 ```ts
-import litebot, { mouse } from "https://deno.land/x/litebot/mod.ts";
+import { getMousePos, setMousePos } from "https://deno.land/x/litebot/mod.ts";
 
-// Get the cordinates of the mouse. Works with multi monitors as well.
-const { x, y } = mouse.cursor_position();
-console.log(`Mouse Position x: ${x}, y: ${y}`);
+// Get current position of mouse
+
+const { x, y } = getMousePos();
+
+// Setting the mouse position
+
+setMousePos(0, 0);
+setMousePos(-20000, 20398); // unsuccessful call results in the mouse being at the endge of the screen on the x and y
 ```
 
 _For more examples, please refer to the [Documentation](https://doc.deno.land/https://deno.land/x/litebot/mod.ts)_
@@ -79,6 +85,14 @@ _For more examples, please refer to the [Documentation](https://doc.deno.land/ht
 <!-- ROADMAP -->
 
 ## Roadmap
+
+- [ ] Mouse Moving Relative - OSX / WIN
+
+  - [ ] mouseUp (px?: number)
+  - [ ] mouseLeft (px?: number)
+  - [ ] mouseRight (px?: number)
+  - [ ] mouseDown (px?: number)
+  - [ ] mouseMove (pxX: number = 1, pxY: number) -- move the mouse vertically and horicontaly at same time
 
 - [ ] Mouse Position - OSX
 - [ ] Color @ Pixel - OSX / Win

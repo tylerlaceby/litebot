@@ -1,13 +1,13 @@
-import { LIBRARY_NAME } from "./build-lib.ts";
+import { LIBRARY_NAME, __dirname } from "./build-lib.ts";
 import { walkSync } from "https://deno.land/std@0.141.0/fs/mod.ts";
-import { sep } from "https://deno.land/std@0.142.0/path/mod.ts";
+import { join, sep } from "https://deno.land/std@0.142.0/path/mod.ts";
 
-const COMPILATION_FLAGS = (files: string) => {
+const COMPILATION_FLAGS = (files: string[]) => {
 	return {
 		// gcc -dynamiclib FILES* -o litebot-core.dylib
-		OSX: ["-dynamic", "-o", `${LIBRARY_NAME}.dylib`, files],
+		OSX: ["-dynamiclib", ...files, "-o", `${LIBRARY_NAME}.dylib`],
 		// gcc -shared -o litebot-core.dll FILES*
-		WIN: ["-shared", "-o", `${LIBRARY_NAME}.dll`, files],
+		WIN: ["-shared", "-o", `${LIBRARY_NAME}.dll`, ...files],
 	};
 };
 
@@ -21,11 +21,11 @@ export async function compile_binaries(
 		`%c\n-- Starting compilation of dynamic library for ${OS}`,
 		"color: palegreen"
 	);
-	let compilation_files = "";
+	const compilation_files = [];
 	const files = walkSync(input_dir);
 	for (const file of files)
 		if (file.name.includes(".h") || file.name.includes(".c")) {
-			compilation_files += `${file.path}`;
+			compilation_files.push(file.path);
 		}
 
 	const args = win
@@ -35,6 +35,8 @@ export async function compile_binaries(
 	const { status, stdout, stderr } = await Deno.spawn("gcc", {
 		args,
 	});
+
+	console.log(args);
 
 	// handle bad calls
 	if (!status.success) {
@@ -52,9 +54,13 @@ export async function compile_binaries(
 	console.log(`%c - Compiled all ${OS} dynamic library files`, "color: azure;");
 	if (!win) {
 		// cleanup the .c files
-		const _cfiles = walkSync(Deno.cwd(), { includeDirs: false });
+		const _cfiles = walkSync(join(__dirname, "../"), { includeDirs: false });
 		for (const file of _cfiles) {
-			if (file.isFile && file.name.includes("litebot-osx.c")) {
+			if (
+				file.isFile &&
+				file.name.includes(".c") &&
+				file.name.includes("-osx")
+			) {
 				// check for c files inside ffi folder and dont remove them
 				if (!file.path.includes("ffi"))
 					Deno.spawnSync("rm", { args: [file.path] });

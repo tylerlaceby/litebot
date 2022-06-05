@@ -1,7 +1,7 @@
 export * from "./modules/mouse.ts";
 
 /**
- * Positional Information for objects in 2D.
+ * Object with x , y cordinates for 2d object's
  */
 export interface Cordinate {
 	x: number;

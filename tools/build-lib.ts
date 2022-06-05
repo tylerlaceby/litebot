@@ -1,13 +1,19 @@
-import { join, sep } from "https://deno.land/std@0.142.0/path/mod.ts";
-
+import {
+	join,
+	sep,
+	dirname,
+	fromFileUrl,
+} from "https://deno.land/std@0.142.0/path/mod.ts";
+// Without trailing slash
+export const __dirname = dirname(fromFileUrl(import.meta.url));
 import { compile_binaries } from "./compile-lib.ts";
 
 // SETTINGS
 export const LIBRARY_NAME = "litebot-core";
-const OUTPUT_FOLDER = `lib${sep}core`;
+const OUTPUT_FOLDER = join(__dirname, `../lib${sep}core`);
 const INPUT_DIRS = {
-	WIN: join("ffi", "win"),
-	OSX: join("ffi", "osx"),
+	WIN: join(__dirname, "../", "ffi/win"),
+	OSX: join(__dirname, "../", "ffi/osx"),
 };
 
 const osx = await compile_binaries(OUTPUT_FOLDER, INPUT_DIRS.OSX, false);

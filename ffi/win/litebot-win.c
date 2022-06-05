@@ -4,13 +4,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void _CursorCordinates(int *outCords)
-{
-  POINT p;
-  if (!GetCursorPos(&p))
-    return;
+// mouse getters
+void getMousePos(int *outCords) { lb_CursorCordinates(outCords); }
 
-  // Pass to Uint32Array in denoland.
-  outCords[0] = p.x;
-  outCords[1] = p.y;
-}
+// mouse setters
+void setMousePos(int x, int y) { lb_setCursorPos(x, y); }

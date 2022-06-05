@@ -1,7 +1,7 @@
-import { cursor_pos } from "../mod.ts";
+import { getMousePos } from "../../mod.ts";
 console.log("Demo of mouse position in realtime:\n");
 
 setInterval(() => {
-	const position = cursor_pos();
+	const position = getMousePos();
 	console.log(position);
 });

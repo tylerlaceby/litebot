@@ -7,10 +7,11 @@
 // ****    OSX BUILDS DONT WORK   *****
 // ************************************
 
-void _CursorCordinates(int *outCords)
-{
-  outCords[0] = 0;
-  outCords[1] = 0;
-}
+// mouse getters
+void getMousePos(int *outCords) { lb_CursorCordinates(outCords); }
 
+// mouse setters
+void setMousePos(int x, int y) { lb_setCursorPos(x, y); }
+
+// needed for compilation
 int main() { return 0; }
