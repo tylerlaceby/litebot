@@ -47,13 +47,25 @@ This is an example of how you can get started with Litebot.
    getMousePos(); // { x: number, y: number }
    ```
 3. Example Scripts
+
    ```
    deno run -A --unstable https://deno.land/x/litebot/examples/mouse/mouse.ts
    ```
+
    - To view more more examples check out https://deno.land/x/litebot/examples/
    - Mouse Related https://deno.land/x/litebot/examples/mouse/
    - Keyboard Related https://deno.land/x/litebot/examples/keyboard/
    - Macros Related https://deno.land/x/litebot/examples/macros/
+
+4. If you want to upgrade / switch versions then please use the -r flag when calling deno run or compile.
+
+```bash
+deno run -r -A --unstable https://deno.land/x/litebot/examples/mouse/mouse.ts
+```
+
+This will pevent the previously cached dll from being used and will fresh install the new dll.
+
+This is important if you change versions.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
