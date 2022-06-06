@@ -6,6 +6,7 @@
 		"windows.h": "c",
 		"litebot.h": "c",
 		"mouse.h": "c",
-		"keyboard.h": "c"
+		"keyboard.h": "c",
+		"litebot-mouse.h": "c"
 	}
 }
