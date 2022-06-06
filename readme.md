@@ -11,7 +11,7 @@
 <h3 align="center"> 🪶 Litebot 🤖</h3>
 
   <p align="center">
-   A Deno library for interacting with the mouse 🖱️ keyboard ⌨️ and screen 💻. Provides a simple API for creating kbm events, macros, & working with displays. Leverages FFI & C providing high performance while maintaining a simple TypeScript API. 
+   A Deno library for interacting with the mouse 🖱️ keyboard ⌨️ and screen 💻.Litebot provides a simple API for creating kbm events, macros, & working with displays. Litebot leverages Deno's FFI to allow speedy low level control in C & C++ while having a typescript API exposed to the user.
     <br />
     <br />
     <a target="_blank" href="https://doc.deno.land/https://deno.land/x/litebot/mod.ts">Docs</a>
