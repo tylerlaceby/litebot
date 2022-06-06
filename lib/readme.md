@@ -13,7 +13,7 @@
   <p align="center">
     Litebot is a Deno package for interacting with the mouse 🖱️ keyboard ⌨️ and screen 💻. The
     focus of Litebot is to provide a fast and simple API for writing bots and programs that need
-    fine control over the keyboard and mouse. Windows only - OSX / Linux Coming soon
+    fine control over the keyboard and mouse. Windows API Only
     <br />
     <br />
     <a target="_blank" href="https://doc.deno.land/https://deno.land/x/litebot/mod.ts">Docs</a>
@@ -61,8 +61,7 @@ This is an example of how you can get started with Litebot.
 
 ## Usage
 
-Currently this library will only work for windows machines. OSX & Linux support are in development.
-
+Currently this library will only work for windows machines.
 Lets demonstrate how to use some common Litebot functions.
 
 ```ts
@@ -86,7 +85,7 @@ _For more examples, please refer to the [Documentation](https://doc.deno.land/ht
 
 ## Roadmap
 
-- [ ] Mouse Moving Relative - OSX / WIN
+- [ ] Mouse Moving Relative -/ WIN
 
   - [ ] mouseUp (px?: number)
   - [ ] mouseLeft (px?: number)
@@ -94,23 +93,22 @@ _For more examples, please refer to the [Documentation](https://doc.deno.land/ht
   - [ ] mouseDown (px?: number)
   - [ ] mouseMove (pxX: number = 1, pxY: number) -- move the mouse vertically and horicontaly at same time
 
-- [ ] Mouse Position - OSX
-- [ ] Color @ Pixel - OSX / Win
+- [ ] Color @ Pixel -/ Win
   - [ ] Color @ Cursor
   - [ ] RGB & Hex Support
-- [ ] Mouse Actions - OSX / Win
+- [ ] Mouse Actions -/ Win
 
   - [ ] Left Click
   - [ ] Right Click
   - [ ] Double Click
     - [ ] Delayed Click
 
-- [ ] Keyboard Actions - OSX / Win
+- [ ] Keyboard Actions -/ Win
   - [ ] sendKey (keyCode : Litebot.Keycode )
   - [ ] sendKeys ( message : string )
   - [ ] keyPress (key : Litebot.Keycode | char )
   - [ ] keyRelease (key : Litebot.Keycode | char )
-- [ ] Macro's OSX / Win
+- [ ] Macro's/ Win
   - [ ] Macro.startRecordMacro ()
   - [ ] Macro.endRecordMacro ()
   - [ ] Macro.playBack ()

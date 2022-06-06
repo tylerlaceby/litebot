@@ -1,26 +1,15 @@
-import { LIBRARY_NAME, __dirname } from "./build-lib.ts";
+import { LIBRARY_NAME, __dirname } from "./build.ts";
 import { walkSync } from "https://deno.land/std@0.141.0/fs/mod.ts";
-import { join, sep } from "https://deno.land/std@0.142.0/path/mod.ts";
+import { sep } from "https://deno.land/std@0.142.0/path/mod.ts";
 
 const COMPILATION_FLAGS = (files: string[]) => {
-	return {
-		// gcc -dynamiclib FILES* -o litebot-core.dylib
-		OSX: ["-dynamiclib", ...files, "-o", `${LIBRARY_NAME}.dylib`],
-		// gcc -shared -o litebot-core.dll FILES*
-		WIN: ["-shared", "-o", `${LIBRARY_NAME}.dll`, ...files],
-	};
+	return ["-shared", "-o", `${LIBRARY_NAME}.dll`, ...files];
 };
 
 export async function compile_binaries(
 	output_dir: string,
-	input_dir: string,
-	win: boolean
+	input_dir: string
 ): Promise<boolean> {
-	const OS = win ? "Windows" : "OSX";
-	console.log(
-		`%c\n-- Starting compilation of dynamic library for ${OS}`,
-		"color: palegreen"
-	);
 	const compilation_files = [];
 	const files = walkSync(input_dir);
 	for (const file of files)
@@ -28,22 +17,15 @@ export async function compile_binaries(
 			compilation_files.push(file.path);
 		}
 
-	const args = win
-		? COMPILATION_FLAGS(compilation_files).WIN
-		: COMPILATION_FLAGS(compilation_files).OSX;
+	const args = COMPILATION_FLAGS(compilation_files);
 
 	const { status, stdout, stderr } = await Deno.spawn("gcc", {
 		args,
 	});
 
-	console.log(args);
-
 	// handle bad calls
 	if (!status.success) {
-		console.log(
-			`%c Could not compile the ${OS} dynamic library\n`,
-			"color: crimson"
-		);
+		console.log(`%c Could not compile the dynamic library\n`, "color: crimson");
 
 		console.log(new TextDecoder().decode(stdout));
 		console.log(new TextDecoder().decode(stderr));
@@ -51,28 +33,8 @@ export async function compile_binaries(
 		return false;
 	}
 
-	console.log(`%c - Compiled all ${OS} dynamic library files`, "color: azure;");
-	if (!win) {
-		// cleanup the .c files
-		const _cfiles = walkSync(join(__dirname, "../"), { includeDirs: false });
-		for (const file of _cfiles) {
-			if (
-				file.isFile &&
-				file.name.includes(".c") &&
-				file.name.includes("-osx")
-			) {
-				// check for c files inside ffi folder and dont remove them
-				if (!file.path.includes("ffi"))
-					Deno.spawnSync("rm", { args: [file.path] });
-			}
-		}
-		console.log(
-			`%c - Performed cleanup of compilation files`,
-			"color: aliceblue"
-		);
-	}
-
-	const fileName = win ? `${LIBRARY_NAME}.dll` : `${LIBRARY_NAME}.dylib`;
+	console.log(`%c - Compiled all dynamic library files`, "color: azure;");
+	const fileName = `${LIBRARY_NAME}.dll`;
 
 	Deno.spawnSync("mv", { args: [fileName, `${output_dir}${sep}${fileName}`] });
 	console.log(

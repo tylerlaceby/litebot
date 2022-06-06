@@ -1,22 +1,19 @@
 import { Plug } from "https://deno.land/x/plug@0.5.1/mod.ts";
-import {
-	join,
-	dirname,
-	fromFileUrl,
-} from "https://deno.land/std@0.142.0/path/mod.ts";
-const TEST_LITEBOT_MODE = Deno.args.includes("--test-litebot");
-const name = "litebot-core";
+
+const name = "litebot";
 const options: Plug.Options = {
 	name,
-	url: !TEST_LITEBOT_MODE
-		? "https://deno.land/x/litebot/core"
-		: join(dirname(fromFileUrl(import.meta.url)), `../core/${name}.dll`),
+	urls: {
+		windows: `https://deno.land/x/litebot/core/${name}.dll`,
+	},
 };
 
 // verify the os is correct
-if (Deno.build.os == "linux") Deno.exit(1);
+if (Deno.build.os !== "windows") {
+	console.log("This library is strictly for windows machines at this time.");
+	Deno.exit(1);
+}
 
-// Drop-in replacement for `Deno.dlopen`
 const library = await Plug.prepare(options, {
 	getMousePos: { parameters: ["pointer"], result: "void" },
 	setMousePos: { parameters: ["i32", "i32"], result: "void" },
