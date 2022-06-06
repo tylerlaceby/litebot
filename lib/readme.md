@@ -80,6 +80,17 @@ setMousePos(-20000, 20398); // unsuccessful call results in the mouse being at t
 setMousePos (500, 500); // => {x: 500, y: 500}
 moveMouse (100, -150); // -> {x: 600, y: 650}; // right 100 & down 150
 moveMouse (0, 400); // -> {x: 600, y: 250}; // up 400
+
+// Single Axis Relative Movement
+
+mouseUp (20) // moves mouse up the screen by 20px
+mouseUp (-20) // moves mouse down the screen by 20px
+// Its possible to move by both positive and negative quantities. This simply inverts the direction again.
+
+mouseLeft (100) // moves mouse left on screen by 100px
+mouseRight (-23) // moves mouse left on screen by 23px
+mouseDown (100) // moves mouse down on screen by 100px
+
 ```
 
 _For more examples, please refer to the [Documentation](https://doc.deno.land/https://deno.land/x/litebot/mod.ts)_
