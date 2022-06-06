@@ -57,8 +57,8 @@ export const moveMouse = (x: number, y: number): void => {
 /** Move the mouse up by a relative amount. */
 export const mouseUp = (y: number) => litebot.mouseUp(Math.floor(y));
 /** Move the mouse down by a relative amount. */
-export const mouseDown = (y: number) => litebot.mouseUp(Math.floor(y));
+export const mouseDown = (y: number) => litebot.mouseDown(Math.floor(y));
 /** Move the mouse left by a relative amount. */
-export const mouseLeft = (x: number) => litebot.mouseUp(Math.floor(x));
+export const mouseLeft = (x: number) => litebot.mouseLeft(Math.floor(x));
 /** Move the mouse right by a relative amount. */
-export const mouseRight = (x: number) => litebot.mouseUp(Math.floor(x));
+export const mouseRight = (x: number) => litebot.mouseRight(Math.floor(x));

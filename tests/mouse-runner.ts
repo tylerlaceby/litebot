@@ -1,16 +1,15 @@
 import {
 	assertEquals,
 } from "https://deno.land/std@0.142.0/testing/asserts.ts";
-import { symbols } from "./test.ts";
+import { getMousePos, moveMouse, setMousePos, mouseDown, mouseLeft, mouseRight, mouseUp } from "../lib/mod.ts";
 
 Deno.test({
 	name: "setMousePos  - [0, 0]",
 	fn: () => {
-		const mousePos = new Int32Array(2);
-		symbols.setMousePos(0, 0);
-		symbols.getMousePos(mousePos);
+		setMousePos(0, 0);
+		const mousePos = getMousePos();
 
-		assertEquals([mousePos[0], mousePos[1]], [0, 0]);
+		assertEquals(mousePos, {x: 0, y: 0});
 	},
 });
 
@@ -18,12 +17,11 @@ Deno.test({
 Deno.test({
 	name: "moveMouse [500, 500] -> [100, 100]",
 	fn: () => {
-		const mousePos = new Int32Array(2);
-		symbols.setMousePos(500, 500);
-		symbols.moveMouse(100, 100);
+		setMousePos(500, 500);
+		moveMouse(100, 100);
 
-		symbols.getMousePos(mousePos);
-		assertEquals([mousePos[0], mousePos[1]], [600, 400]);
+		const mousePos = getMousePos();
+		assertEquals(mousePos, {x: 600, y: 400});
 	},
 });
 
@@ -31,12 +29,11 @@ Deno.test({
 Deno.test({
 	name: "moveMouse [500, 500] -> [-100, -100]",
 	fn: () => {
-		const mousePos = new Int32Array(2);
-		symbols.setMousePos(500, 500);
-		symbols.moveMouse(-100, -100);
+		setMousePos(500, 500);
+		moveMouse(-100, -100);
 
-		symbols.getMousePos(mousePos);
-		assertEquals([mousePos[0], mousePos[1]], [400, 600]);
+		const mousePos = getMousePos();
+		assertEquals(mousePos, {x: 400, y: 600});
 	},
 });
 
@@ -44,11 +41,10 @@ Deno.test({
 Deno.test({
 	name: "mouseUp -- #1",
 	fn: () => {
-		const mousePos = new Int32Array(2);
-		symbols.setMousePos(400, 500);
-		symbols.mouseUp(100);
-		symbols.getMousePos(mousePos);
-		assertEquals([mousePos[0], mousePos[1]], [400, 400]);
+		setMousePos(400, 500);
+		mouseUp(100);
+		const mousePos = getMousePos();
+		assertEquals(mousePos, {x: 400, y: 400});
 	},
 });
 
@@ -56,76 +52,73 @@ Deno.test({
 Deno.test({
 	name: "mouseUp -- #2",
 	fn: () => {
-		const mousePos = new Int32Array(2);
-		symbols.setMousePos(400, 500);
-		symbols.mouseUp(-100);
-		symbols.getMousePos(mousePos);
-		assertEquals([mousePos[0], mousePos[1]], [400, 600]);
+		setMousePos(400, 500);
+		mouseUp(-100);
+
+		const mousePos = getMousePos();
+		assertEquals(mousePos, {x: 400, y: 600});
 	},
 });
 
 Deno.test({
 	name: "mouseDown -- #1",
 	fn: () => {
-		const mousePos = new Int32Array(2);
-		symbols.setMousePos(400, 500);
-		symbols.mouseDown(-100);
-		symbols.getMousePos(mousePos);
-		assertEquals([mousePos[0], mousePos[1]], [400, 400]);
+		setMousePos(500, 500);
+		mouseDown(0);
+
+		const mousePos = getMousePos();
+		assertEquals(mousePos, {x: 500, y: 500});
 	},
 });
 
 Deno.test({
 	name: "mouseDown -- #2",
 	fn: () => {
-		const mousePos = new Int32Array(2);
-		symbols.setMousePos(400, 500);
-		symbols.mouseDown(100);
-		symbols.getMousePos(mousePos);
-		assertEquals([mousePos[0], mousePos[1]], [400, 600]);
+		setMousePos(400, 0);
+		mouseDown(100);
+		const mousePos = getMousePos();
+		assertEquals(mousePos, {x: 400, y: 100});
 	},
 });
 
 Deno.test({
 	name: "mouseLeft -- #1",
 	fn: () => {
-		const mousePos = new Int32Array(2);
-		symbols.setMousePos(1000, 0);
-		symbols.mouseLeft(500);
-		symbols.getMousePos(mousePos);
-		assertEquals([mousePos[0], mousePos[1]], [500, 0]);
+		setMousePos(1000, 0);
+		mouseLeft(500);
+
+		const mousePos = getMousePos();
+		assertEquals(mousePos, {x: 500, y: 0});
 	},
 });
 
 Deno.test({
 	name: "mouseLeft -- #2",
 	fn: () => {
-		const mousePos = new Int32Array(2);
-		symbols.setMousePos(1000, 0);
-		symbols.mouseLeft(-50);
-		symbols.getMousePos(mousePos);
-		assertEquals([mousePos[0], mousePos[1]], [1050, 0]);
+		setMousePos(1000, 0);
+		mouseLeft(-50);
+		const mousePos = getMousePos();
+		assertEquals(mousePos, {x: 1050, y: 0});
 	},
 });
 
 Deno.test({
 	name: "mouseRight -- #1",
 	fn: () => {
-		const mousePos = new Int32Array(2);
-		symbols.setMousePos(100, 100);
-		symbols.mouseRight(50);
-		symbols.getMousePos(mousePos);
-		assertEquals([mousePos[0], mousePos[1]], [150, 100]);
+		setMousePos(100, 100);
+		mouseRight(50);
+
+		const mousePos = getMousePos();
+		assertEquals(mousePos, {x: 150, y: 100});
 	},
 });
 
 Deno.test({
 	name: "mouseRight -- #2",
 	fn: () => {
-		const mousePos = new Int32Array(2);
-		symbols.setMousePos(100, 100);
-		symbols.mouseRight(-50);
-		symbols.getMousePos(mousePos);
-		assertEquals([mousePos[0], mousePos[1]], [50, 100]);
+		setMousePos(100, 100);
+		mouseRight(-50);
+		const mousePos = getMousePos();
+		assertEquals(mousePos, {x: 50, y: 100});
 	},
 });

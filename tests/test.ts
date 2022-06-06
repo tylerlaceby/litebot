@@ -6,18 +6,6 @@ import {
 } from "https://deno.land/std@0.142.0/path/mod.ts";
 export const __dirname = dirname(fromFileUrl(import.meta.url));
 
-const lib = Deno.dlopen(join(__dirname, "../lib/core/litebot.dll"), {
-	getMousePos: { parameters: ["pointer"], result: "void" },
-	setMousePos: { parameters: ["i32", "i32"], result: "void" },
-	moveMouse : {parameters: ['i32', 'i32'], result: "void"},
-	mouseUp: {parameters: ['i32'], result: "void"},
-	mouseDown: {parameters: ['i32'], result: "void"},
-	mouseLeft: {parameters: ['i32'], result: "void"},
-	mouseRight: {parameters: ['i32'], result: "void"},
-});
-
-export const symbols = lib.symbols;
-
 const tests = ["mouse-runner.ts", "keyboard-runner.ts"].map((f) =>
 	join(__dirname, "./", f)
 );
@@ -27,7 +15,7 @@ async function run_tests() {
 	// run tests
 	for (const file of tests) {
 		const { stdout, status, stderr } = await Deno.spawn("deno", {
-			args: ["test", "-A", "--unstable", file],
+			args: ["test", "-A", "--unstable", file, '--litebot-dylib-nocache'],
 			cwd: __dirname,
 		});
 
