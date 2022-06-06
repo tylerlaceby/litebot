@@ -15,7 +15,7 @@ async function run_tests() {
 	// run tests
 	for (const file of tests) {
 		const { stdout, status, stderr } = await Deno.spawn("deno", {
-			args: ["test", "-A", "--unstable", file, '--litebot-dylib-nocache'],
+			args: ["test", "-A", "--unstable", file, "--", "--nocache"],
 			cwd: __dirname,
 		});
 

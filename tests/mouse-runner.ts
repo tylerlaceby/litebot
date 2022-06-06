@@ -1,7 +1,17 @@
+import { assertEquals } from "https://deno.land/std@0.142.0/testing/asserts.ts";
 import {
-	assertEquals,
-} from "https://deno.land/std@0.142.0/testing/asserts.ts";
-import { getMousePos, moveMouse, setMousePos, mouseDown, mouseLeft, mouseRight, mouseUp } from "../lib/mod.ts";
+	getMousePos,
+	moveMouse,
+	setMousePos,
+	mouseDown,
+	mouseLeft,
+	mouseRight,
+	mouseUp,
+} from "../lib/mod.ts";
+
+// ********************
+// Getters & Setters **
+// ********************
 
 Deno.test({
 	name: "setMousePos  - [0, 0]",
@@ -9,10 +19,9 @@ Deno.test({
 		setMousePos(0, 0);
 		const mousePos = getMousePos();
 
-		assertEquals(mousePos, {x: 0, y: 0});
+		assertEquals(mousePos, { x: 0, y: 0 });
 	},
 });
-
 
 Deno.test({
 	name: "moveMouse [500, 500] -> [100, 100]",
@@ -21,10 +30,9 @@ Deno.test({
 		moveMouse(100, 100);
 
 		const mousePos = getMousePos();
-		assertEquals(mousePos, {x: 600, y: 400});
+		assertEquals(mousePos, { x: 600, y: 400 });
 	},
 });
-
 
 Deno.test({
 	name: "moveMouse [500, 500] -> [-100, -100]",
@@ -33,7 +41,7 @@ Deno.test({
 		moveMouse(-100, -100);
 
 		const mousePos = getMousePos();
-		assertEquals(mousePos, {x: 400, y: 600});
+		assertEquals(mousePos, { x: 400, y: 600 });
 	},
 });
 
@@ -44,11 +52,14 @@ Deno.test({
 		setMousePos(400, 500);
 		mouseUp(100);
 		const mousePos = getMousePos();
-		assertEquals(mousePos, {x: 400, y: 400});
+		assertEquals(mousePos, { x: 400, y: 400 });
 	},
 });
 
-// test relative movements
+// ***************************
+// Relative Mouse Movements **
+// ***************************
+
 Deno.test({
 	name: "mouseUp -- #2",
 	fn: () => {
@@ -56,7 +67,7 @@ Deno.test({
 		mouseUp(-100);
 
 		const mousePos = getMousePos();
-		assertEquals(mousePos, {x: 400, y: 600});
+		assertEquals(mousePos, { x: 400, y: 600 });
 	},
 });
 
@@ -67,7 +78,7 @@ Deno.test({
 		mouseDown(0);
 
 		const mousePos = getMousePos();
-		assertEquals(mousePos, {x: 500, y: 500});
+		assertEquals(mousePos, { x: 500, y: 500 });
 	},
 });
 
@@ -77,7 +88,7 @@ Deno.test({
 		setMousePos(400, 0);
 		mouseDown(100);
 		const mousePos = getMousePos();
-		assertEquals(mousePos, {x: 400, y: 100});
+		assertEquals(mousePos, { x: 400, y: 100 });
 	},
 });
 
@@ -88,7 +99,7 @@ Deno.test({
 		mouseLeft(500);
 
 		const mousePos = getMousePos();
-		assertEquals(mousePos, {x: 500, y: 0});
+		assertEquals(mousePos, { x: 500, y: 0 });
 	},
 });
 
@@ -98,7 +109,7 @@ Deno.test({
 		setMousePos(1000, 0);
 		mouseLeft(-50);
 		const mousePos = getMousePos();
-		assertEquals(mousePos, {x: 1050, y: 0});
+		assertEquals(mousePos, { x: 1050, y: 0 });
 	},
 });
 
@@ -109,7 +120,7 @@ Deno.test({
 		mouseRight(50);
 
 		const mousePos = getMousePos();
-		assertEquals(mousePos, {x: 150, y: 100});
+		assertEquals(mousePos, { x: 150, y: 100 });
 	},
 });
 
@@ -119,6 +130,10 @@ Deno.test({
 		setMousePos(100, 100);
 		mouseRight(-50);
 		const mousePos = getMousePos();
-		assertEquals(mousePos, {x: 50, y: 100});
+		assertEquals(mousePos, { x: 50, y: 100 });
 	},
 });
+
+// -----------------------------
+// -- MOUSE CLICKS & ACTIONS  --
+// -----------------------------
