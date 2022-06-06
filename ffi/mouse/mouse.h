@@ -32,4 +32,24 @@ void setMousePos(int x, int y);
  */
 void moveMouse (int x, int y);
 
+/**
+ * @brief move the mouse relative to its current position. Moves up the screen by the y value passed.
+*/
+void mouseUp (int y);
+
+/**
+ * @brief move the mouse relative to its current position. Moves down the screen by the y value passed.
+*/
+void mouseDown (int y);
+
+/**
+ * @brief move the mouse relative to its current position. Moves left on the screen by the x value passed.
+*/
+void mouseLeft (int x);
+
+/**
+ * @brief move the mouse relative to its current position. Moves right on the screen by the x value passed.
+*/
+void mouseRight (int x);
+
 #endif

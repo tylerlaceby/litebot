@@ -43,8 +43,8 @@ export const setMousePos = (x: number, y: number): void => {
  * mouse position.
  * @example
  * setMousePos (500, 500); // => {x: 500, y: 500}
- * moveMouse (100, -150); // -> {x: 600, y: 750}; // right 100 & down 150
- * moveMouse (0, 400); // -> {x: 600, y: 350}; // up 350
+ * moveMouse (100, -150); // -> {x: 600, y: 650}; // right 100 & down 150
+ * moveMouse (0, 400); // -> {x: 600, y: 250}; // up 400
  * 
  * @param { Number } x the x value to be offset by.
  * @param { Number } y The y value to be offset by. A negative value will move the mouse down the screen 
@@ -53,3 +53,12 @@ export const setMousePos = (x: number, y: number): void => {
 export const moveMouse = (x: number, y: number): void => {
 	litebot.moveMouse(Math.floor(x), Math.floor(y));
 }
+
+/** Move the mouse up by a relative amount. */
+export const mouseUp = (y: number) => litebot.mouseUp(Math.floor(y));
+/** Move the mouse down by a relative amount. */
+export const mouseDown = (y: number) => litebot.mouseUp(Math.floor(y));
+/** Move the mouse left by a relative amount. */
+export const mouseLeft = (x: number) => litebot.mouseUp(Math.floor(x));
+/** Move the mouse right by a relative amount. */
+export const mouseRight = (x: number) => litebot.mouseUp(Math.floor(x));

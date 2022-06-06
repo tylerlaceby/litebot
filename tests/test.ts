@@ -9,7 +9,11 @@ export const __dirname = dirname(fromFileUrl(import.meta.url));
 const lib = Deno.dlopen(join(__dirname, "../lib/core/litebot.dll"), {
 	getMousePos: { parameters: ["pointer"], result: "void" },
 	setMousePos: { parameters: ["i32", "i32"], result: "void" },
-	moveMouse : {parameters: ['i32', 'i32'], result: "void"}
+	moveMouse : {parameters: ['i32', 'i32'], result: "void"},
+	mouseUp: {parameters: ['i32'], result: "void"},
+	mouseDown: {parameters: ['i32'], result: "void"},
+	mouseLeft: {parameters: ['i32'], result: "void"},
+	mouseRight: {parameters: ['i32'], result: "void"},
 });
 
 export const symbols = lib.symbols;
