@@ -3,6 +3,9 @@
 	"deno.lint": true,
 	"deno.unstable": true,
 	"files.associations": {
-		"windows.h": "c"
+		"windows.h": "c",
+		"litebot.h": "c",
+		"mouse.h": "c",
+		"keyboard.h": "c"
 	}
 }
