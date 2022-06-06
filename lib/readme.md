@@ -113,35 +113,44 @@ _For more examples, please refer to the [Documentation](https://doc.deno.land/ht
 
 ## Roadmap
 
-- [ ] Mouse Moving Relative -/ WIN
+- [ ] Screen 
+  - [ ] getMonitors 
+  - [ ] getMonitorCount
+  - [ ] getActiveMonitor
 
-  - [ ] mouseUp (px?: number)
-  - [ ] mouseLeft (px?: number)
-  - [ ] mouseRight (px?: number)
-  - [ ] mouseDown (px?: number)
-  - [ ] mouseMove (pxX: number = 1, pxY: number) -- move the mouse vertically and horicontaly at same time
+  - [ ] setPixelColor ([r, g, b])
+  - [ ] getPixelColor (x, y)
+  - [ ] getMouseColor 
 
-- [ ] Color @ Pixel -/ Win
-  - [ ] Color @ Cursor
-  - [ ] RGB & Hex Support
-- [ ] Mouse Actions -/ Win
-
+- [ ] Mouse Actions 
   - [ ] Left Click
   - [ ] Right Click
   - [ ] Double Click
     - [ ] Delayed Click
 
-- [ ] Keyboard Actions -/ Win
+- [ ] Keyboard Actions
   - [ ] sendKey (keyCode : Litebot.Keycode )
   - [ ] sendKeys ( message : string )
   - [ ] keyPress (key : Litebot.Keycode | char )
   - [ ] keyRelease (key : Litebot.Keycode | char )
-- [ ] Macro's/ Win
+
+- [ ] Macro's 
   - [ ] Macro.startRecordMacro ()
   - [ ] Macro.endRecordMacro ()
   - [ ] Macro.playBack ()
   - [ ] Macro.erase ()
   - [ ] Macro.saveMacro () : Litebot.Action []
+
+## Completed
+
+- [x] Mouse Moving Relative 
+
+  - [x] mouseUp
+  - [x] mouseLeft
+  - [x] mouseRight
+  - [x] mouseDown
+  - [x] mouseMove (pxX: number, pxY: number) -- move the mouse vertically and horicontaly at same time
+
 
 See the [open issues](https://github.com/tylerlaceby/litebot/issues) for a full list of proposed features (and known issues).
 

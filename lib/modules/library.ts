@@ -1,10 +1,14 @@
-import { Plug } from "https://deno.land/x/plug@0.5.1/mod.ts";
+import { Plug, } from "https://deno.land/x/plug@0.5.1/mod.ts";
 
 const name = "litebot";
+const WIN_FILENAME = `${name}.dll`;
+const policy = Deno.args.includes("--litebot-nocache")? "NONE" : "STORE" as Plug.CachePolicy;
+const WINDOWS_URL = new URL(`../core/${WIN_FILENAME}`, import.meta.url).href;
 const options: Plug.Options = {
 	name,
+	policy,	
 	urls: {
-		windows: `https://deno.land/x/litebot/core/${name}.dll`,
+		windows: WINDOWS_URL
 	},
 };
 
