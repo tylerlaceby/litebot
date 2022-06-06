@@ -7,6 +7,8 @@ import {
 	mouseLeft,
 	mouseRight,
 	mouseUp,
+	mouseClick,
+	sleep,
 } from "../lib/mod.ts";
 
 // ********************
@@ -137,3 +139,14 @@ Deno.test({
 // -----------------------------
 // -- MOUSE CLICKS & ACTIONS  --
 // -----------------------------
+
+Deno.test({
+	name: "mouseClick -- #2",
+	fn: async () => {
+		console.log("clicking at -5, 3 in 5 seconds");
+		await sleep(1000);
+		console.log(getMousePos(), "before");
+		mouseClick({ x: -15, y: 15 });
+		console.log(getMousePos(), "after");
+	},
+});

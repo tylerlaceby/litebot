@@ -60,6 +60,6 @@ void mouseRight(int x);
  * @brief perform a mouse click at the mouse's current position.
  * @param left defaults to 0 for a left click and 1 for a right click.
  */
-void mouseClick(char left);
+void mouseClick(int left);
 
 #endif

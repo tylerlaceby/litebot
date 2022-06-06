@@ -82,7 +82,7 @@ export const mouseRight = (x: number): void =>
  * mouse position. If these are overidden then the mouse click will be at thye new x and y location.
  */
 export type LitebotClickOptions = {
-	leftClick: boolean;
+	leftClick?: boolean;
 	x?: number;
 	y?: number;
 };
@@ -97,11 +97,15 @@ export const mouseClick = (
 	// only if one is undefined then get the cordinates.
 	if (options.y == undefined || options.x == undefined) {
 		const { x, y } = getMousePos();
-
-		// Move mouse before performing click.
-		setMousePos(options.x || x, options.y || y);
+		options.x ??= x;
+		options.y ??= y;
 	}
 
+	// Move mouse before performing click.
+	setMousePos(options.x, options.y);
+
 	console.log(getMousePos(), options);
-	litebot.mouseClick(options.leftClick ? 0 : 1);
+	const mode = options.leftClick ? 1 : -1;
+	console.log(mode);
+	litebot.mouseClick(mode);
 };

@@ -29,7 +29,7 @@ const library = await Plug.prepare(options, {
 	mouseDown: { parameters: ["i32"], result: "void" },
 	mouseLeft: { parameters: ["i32"], result: "void" },
 	mouseRight: { parameters: ["i32"], result: "void" },
-	mouseClick: { parameters: ["i8"], result: "void" },
+	mouseClick: { parameters: ["i32"], result: "void" },
 });
 
 const litebot = library.symbols;

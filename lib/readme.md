@@ -11,9 +11,7 @@
 <h3 align="center"> 🪶 Litebot 🤖</h3>
 
   <p align="center">
-    Litebot is a Deno package for interacting with the mouse 🖱️ keyboard ⌨️ and screen 💻. The
-    focus of Litebot is to provide a fast and simple API for writing bots and programs that need
-    fine control over the keyboard and mouse. Windows API Only
+   A Deno library for interacting with the mouse 🖱️ keyboard ⌨️ and screen 💻. Litebot provides a simple API for creating kbm events, macros, & working with displays. Litebot leverages Deno's FFI to allow speedy low level control in C & C++ while having a typescript API exposed to the user.
     <br />
     <br />
     <a target="_blank" href="https://doc.deno.land/https://deno.land/x/litebot/mod.ts">Docs</a>
@@ -164,7 +162,7 @@ Tyler Laceby: [@tylerbadger23](https://twitter.com/tylerbadger23) - Twitter
 
 My Channel: [JSimplified](https://www.youtube.com/c/JSimplified) - YouTube
 
-Deno Repo: [https://github.com/tylerlaceby/litebot](https://deno.land/x/litebot/)
+Deno Repo: [https://deno.land/x/litebot/](https://deno.land/x/litebot/)
 
 Project Link: [https://github.com/tylerlaceby/litebot](https://github.com/tylerlaceby/litebot)
 
