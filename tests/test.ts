@@ -9,9 +9,10 @@ export const __dirname = dirname(fromFileUrl(import.meta.url));
 const lib = Deno.dlopen(join(__dirname, "../lib/core/litebot.dll"), {
 	getMousePos: { parameters: ["pointer"], result: "void" },
 	setMousePos: { parameters: ["i32", "i32"], result: "void" },
+	moveMouse : {parameters: ['i32', 'i32'], result: "void"}
 });
 
-export const { getMousePos, setMousePos } = lib.symbols;
+export const symbols = lib.symbols;
 
 const tests = ["mouse-runner.ts", "keyboard-runner.ts"].map((f) =>
 	join(__dirname, "./", f)
@@ -27,10 +28,9 @@ async function run_tests() {
 		});
 
 		const stats = { file: basename(file), success: status.success };
-
+		console.log(new TextDecoder().decode(stdout));
 		testResults.push(stats);
 		if (!status.success) {
-			console.log(new TextDecoder().decode(stdout));
 			console.log(`%c- Test failed: ${basename(file)}`, "color: tomato");
 			console.log(new TextDecoder().decode(stderr));
 		} else console.log(`%c- Test Passed: ${basename(file)}`, "color: cyan");

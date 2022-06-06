@@ -17,6 +17,7 @@ if (Deno.build.os !== "windows") {
 const library = await Plug.prepare(options, {
 	getMousePos: { parameters: ["pointer"], result: "void" },
 	setMousePos: { parameters: ["i32", "i32"], result: "void" },
+	moveMouse : {parameters: ['i32', 'i32'], result: "void"}
 });
 
 const litebot = library.symbols;

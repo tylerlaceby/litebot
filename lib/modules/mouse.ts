@@ -37,3 +37,19 @@ export const getMousePos = (): Cordinate => {
 export const setMousePos = (x: number, y: number): void => {
 	litebot.setMousePos(Math.floor(x), Math.floor(Math.abs(y)));
 };
+
+/**
+ * Moves the mouse relative to the current position. values are relative to the current
+ * mouse position.
+ * @example
+ * setMousePos (500, 500); // => {x: 500, y: 500}
+ * moveMouse (100, -150); // -> {x: 600, y: 750}; // right 100 & down 150
+ * moveMouse (0, 400); // -> {x: 600, y: 350}; // up 350
+ * 
+ * @param { Number } x the x value to be offset by.
+ * @param { Number } y The y value to be offset by. A negative value will move the mouse down the screen 
+ * this is atypical from normal screen operations but familar in the cartesian system.
+ */
+export const moveMouse = (x: number, y: number): void => {
+	litebot.moveMouse(Math.floor(x), Math.floor(y));
+}
