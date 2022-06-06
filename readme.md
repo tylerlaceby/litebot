@@ -77,7 +77,7 @@ Currently this library will only work for windows machines.
 Lets demonstrate how to use some common Litebot functions.
 
 ```ts
-import { getMousePos, setMousePos, moveMouse } from "https://deno.land/x/litebot/mod.ts";
+import { getMousePos, setMousePos, moveMouse, mouseUp, mouseLeft, mouseDown, mouseRight } from "https://deno.land/x/litebot/mod.ts";
 
 // Get current position of mouse
 
