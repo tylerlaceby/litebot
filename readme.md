@@ -75,7 +75,15 @@ Currently this library will only work for windows machines.
 Lets demonstrate how to use some common Litebot functions.
 
 ```ts
-import { getMousePos, setMousePos, moveMouse, mouseUp, mouseLeft, mouseDown, mouseRight } from "https://deno.land/x/litebot/mod.ts";
+import {
+	getMousePos,
+	setMousePos,
+	moveMouse,
+	mouseUp,
+	mouseLeft,
+	mouseDown,
+	mouseRight,
+} from "https://deno.land/x/litebot/mod.ts";
 
 // Get current position of mouse
 
@@ -87,20 +95,36 @@ setMousePos(0, 0);
 setMousePos(-20000, 20398); // unsuccessful call results in the mouse being at the endge of the screen on the x and y
 
 // Relative Mouse Movement
-setMousePos (500, 500); // => {x: 500, y: 500}
-moveMouse (100, -150); // -> {x: 600, y: 650}; // right 100 & down 150
-moveMouse (0, 400); // -> {x: 600, y: 250}; // up 400
+setMousePos(500, 500); // => {x: 500, y: 500}
+moveMouse(100, -150); // -> {x: 600, y: 650}; // right 100 & down 150
+moveMouse(0, 400); // -> {x: 600, y: 250}; // up 400
 
 // Single Axis Relative Movement
 
-mouseUp (20) // moves mouse up the screen by 20px
-mouseUp (-20) // moves mouse down the screen by 20px
+mouseUp(20); // moves mouse up the screen by 20px
+mouseUp(-20); // moves mouse down the screen by 20px
 // Its possible to move by both positive and negative quantities. This simply inverts the direction again.
 
-mouseLeft (100) // moves mouse left on screen by 100px
-mouseRight (-23) // moves mouse left on screen by 23px
-mouseDown (100) // moves mouse down on screen by 100px
+mouseLeft(100); // moves mouse left on screen by 100px
+mouseRight(-23); // moves mouse left on screen by 23px
+mouseDown(100); // moves mouse down on screen by 100px
+```
 
+Handling Mouse clicks and keyboard events is also quiet easy inside Litebot.
+The only diference is these operations are async and done on a seperate thread so its vital to await them to avoid race conditions between clicks and keyboard presses,
+
+```ts
+// left click at position 50, 100
+setMousePos(50, 100);
+await mouseClick();
+
+// right click at same position
+await mouseClick({ leftClick: false });
+
+// left click at -100, 100
+await mouseClick({ x: -100, y: 100, leftClick: true });
+// or
+await mouseClick({ x: -100, y: 100 });
 ```
 
 _For more examples, please refer to the [Documentation](https://doc.deno.land/https://deno.land/x/litebot/mod.ts)_
@@ -111,28 +135,31 @@ _For more examples, please refer to the [Documentation](https://doc.deno.land/ht
 
 ## Roadmap
 
-- [ ] Screen 
-  - [ ] getMonitors 
+- [ ] Screen
+
+  - [ ] getMonitors
   - [ ] getMonitorCount
   - [ ] getActiveMonitor
 
   - [ ] setPixelColor ([r, g, b])
   - [ ] getPixelColor (x, y)
-  - [ ] getMouseColor 
+  - [ ] getMouseColor
 
-- [ ] Mouse Actions 
-  - [ ] Left Click
-  - [ ] Right Click
+- [ ] Mouse Actions
+
+  - [x] Left Click
+  - [x] Right Click
   - [ ] Double Click
     - [ ] Delayed Click
 
 - [ ] Keyboard Actions
+
   - [ ] sendKey (keyCode : Litebot.Keycode )
   - [ ] sendKeys ( message : string )
   - [ ] keyPress (key : Litebot.Keycode | char )
   - [ ] keyRelease (key : Litebot.Keycode | char )
 
-- [ ] Macro's 
+- [ ] Macro's
   - [ ] Macro.startRecordMacro ()
   - [ ] Macro.endRecordMacro ()
   - [ ] Macro.playBack ()
@@ -141,14 +168,14 @@ _For more examples, please refer to the [Documentation](https://doc.deno.land/ht
 
 ## Completed
 
-- [x] Mouse Moving Relative 
-
+- [x] Mouse Moving Relative
+  - [x] getMousePos
+  - [x] setMousePos
   - [x] mouseUp
   - [x] mouseLeft
   - [x] mouseRight
   - [x] mouseDown
   - [x] mouseMove (pxX: number, pxY: number) -- move the mouse vertically and horicontaly at same time
-
 
 See the [open issues](https://github.com/tylerlaceby/litebot/issues) for a full list of proposed features (and known issues).
 
@@ -181,3 +208,7 @@ Project Link: [https://github.com/tylerlaceby/litebot](https://github.com/tylerl
 [license-url]: https://github.com/tylerlaceby/litebot/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/tyler-laceby-b94b27157
+
+```
+
+```

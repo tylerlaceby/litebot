@@ -12,7 +12,7 @@ export const LIBRARY_NAME = "litebot";
 const OUTPUT_FOLDER = join(__dirname, `..${sep}lib${sep}core`);
 const INPUT_DIR = join(__dirname, "..", "ffi");
 
-console.log("\n -- Compiling Dynamic Library -- ");
+console.log("\n -- Compiling Library -- ");
 const win = await compile_binaries(OUTPUT_FOLDER, INPUT_DIR);
 
 if (win)
@@ -20,11 +20,13 @@ if (win)
 		"%c\n-- Compilation of library 100% successful",
 		"color: paleturquoise"
 	);
-else
+else {
 	console.log(
 		`\n-- Could not satisy all compilation targets\n Could not compile targets`,
-		"color: purple; text-decoration: underline"
+		"color: red; text-decoration: underline"
 	);
+	Deno.exit(1);
+}
 
 // lastly move the version of readme into the /lib folder
 

@@ -87,9 +87,9 @@ export type LitebotClickOptions = {
 	y?: number;
 };
 
-export const mouseClick = (
+export const mouseClick = async (
 	options: LitebotClickOptions = { leftClick: true, ...getMousePos() }
-): void => {
+): Promise<void> => {
 	// handle default params
 	options ??= { leftClick: true };
 	options.leftClick ??= true;
@@ -103,9 +103,6 @@ export const mouseClick = (
 
 	// Move mouse before performing click.
 	setMousePos(options.x, options.y);
-
-	console.log(getMousePos(), options);
 	const mode = options.leftClick ? 1 : -1;
-	console.log(mode);
-	litebot.mouseClick(mode);
+	await litebot.mouseClick(mode);
 };

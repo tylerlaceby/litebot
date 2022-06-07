@@ -141,12 +141,40 @@ Deno.test({
 // -----------------------------
 
 Deno.test({
-	name: "mouseClick -- #2",
+	name: "mouseClickLeft 1",
 	fn: async () => {
-		console.log("clicking at -5, 3 in 5 seconds");
 		await sleep(1000);
-		console.log(getMousePos(), "before");
-		mouseClick({ x: -15, y: 15 });
-		console.log(getMousePos(), "after");
+		await mouseClick({ x: 700, y: 700, leftClick: true });
+		assertEquals(getMousePos(), { x: 700, y: 700 });
+	},
+});
+
+Deno.test({
+	name: "mouseClickLeft 2",
+	fn: async () => {
+		await sleep(1000);
+		setMousePos(10, 10);
+		await mouseClick();
+		assertEquals(getMousePos(), { x: 10, y: 10 });
+	},
+});
+
+Deno.test({
+	name: "mouseClickRight",
+	fn: async () => {
+		await sleep(1000);
+		setMousePos(400, 400);
+		await mouseClick({ leftClick: false });
+		assertEquals(getMousePos(), { x: 400, y: 400 });
+	},
+});
+
+Deno.test({
+	name: "mouseClickRight 2",
+	fn: async () => {
+		await sleep(1000);
+		setMousePos(400, 400);
+		await mouseClick({ leftClick: false, x: -100, y: 40 });
+		assertEquals(getMousePos(), { x: -100, y: 40 });
 	},
 });

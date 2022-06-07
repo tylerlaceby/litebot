@@ -1,40 +1,29 @@
 #include <Windows.h>
 #include "mouse.h"
 #include <stdio.h>
+
 // -----------------------------
 // -- MOUSE CLICKS & ACTIONS  --
 // -----------------------------
 
-void mouseClick(int left)
+int mouseClick(int left)
 {
-  Sleeep(100);
-  if (left)
-    mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_VIRTUALDESK, 0, 0, 0, 0);
-  else
-    mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_VIRTUALDESK, 0, 0, 0, 0);
+  DWORD downclick = (MOUSEEVENTF_ABSOLUTE | (left == 1 ? MOUSEEVENTF_LEFTDOWN : MOUSEEVENTF_RIGHTDOWN));
+  DWORD upclick = (MOUSEEVENTF_ABSOLUTE | (left == 1 ? MOUSEEVENTF_LEFTUP : MOUSEEVENTF_RIGHTUP));
 
-  Sleep(100);
+  INPUT input;
+  input.type = INPUT_MOUSE;
+  input.mi.dwFlags = downclick;
+  input.mi.time = 0;
+  UINT sent = SendInput(1, &input, sizeof(INPUT));
 
-  if (left)
-    mouse_event(MOUSEEVENTF_LEFTUP | MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_VIRTUALDESK, 0, 0, 0, 0);
-  else
-    mouse_event(MOUSEEVENTF_RIGHTUP | MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_VIRTUALDESK, 0, 0, 0, 0);
-}
+  // verify the commands were executed
+  if (sent != 1)
+    return -1;
 
-void sendKey(char keyCode)
-{
-  SHORT key;
-  UINT mappedkey;
-  // In a loop.
-  INPUT input = {0};
-  key = VkKeyScan(keyCode);
-  // Simulating the i key.
-  mappedkey = MapVirtualKey(LOBYTE(key), 0);
-  input.type = INPUT_KEYBOARD;
-  input.ki.dwFlags = KEYEVENTF_SCANCODE;
-  input.ki.wScan = mappedkey;
-  SendInput(1, &input, sizeof(input));
   Sleep(10);
-  input.ki.dwFlags = KEYEVENTF_SCANCODE | KEYEVENTF_KEYUP;
-  SendInput(1, &input, sizeof(input));
+  input.mi.dwFlags = upclick;
+  sent = SendInput(1, &input, sizeof(INPUT));
+
+  return sent;
 }
