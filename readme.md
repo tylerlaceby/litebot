@@ -31,7 +31,7 @@
 
 ## Getting Started
 
-This is an example of how you can get started with Litebot.
+This is an example of how you can get started with Litebot. You can also check out the `examples` folder for more documentation on each function.
 
 1. Import Litebot
 
@@ -47,7 +47,7 @@ This is an example of how you can get started with Litebot.
 3. Example Scripts
 
    ```
-   deno run -A --unstable https://deno.land/x/litebot/examples/mouse/mouse.ts
+   deno run --allow-read --allow-ffi --allow-env --unstable https://deno.land/x/litebot/examples/mouse/mouse.ts
    ```
 
    - To view more more examples check out https://deno.land/x/litebot/examples/
@@ -55,21 +55,21 @@ This is an example of how you can get started with Litebot.
    - Keyboard Related https://deno.land/x/litebot/examples/keyboard/
    - Macros Related https://deno.land/x/litebot/examples/macros/
 
-4. If you want to upgrade / switch versions then please use the -r flag when calling deno run or compile.
+4. If you want to upgrade / switch versions then please use the `-r` & `-- --nocache` flags when calling deno run or compile.
 
 ```bash
-deno run -r -A --unstable https://deno.land/x/litebot/examples/mouse/mouse.ts
+deno run -r --allow-read --allow-ffi --allow-env --unstable https://deno.land/x/litebot/examples/mouse/mouse.ts
 ```
 
 This will pevent the previously cached dll from being used and will fresh install the new dll.
-
-This is important if you change versions.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
 
 ## Usage
+
+### `Mouse Position & Movement`
 
 Currently this library will only work for windows machines.
 Lets demonstrate how to use some common Litebot functions.
@@ -110,10 +110,14 @@ mouseRight(-23); // moves mouse left on screen by 23px
 mouseDown(100); // moves mouse down on screen by 100px
 ```
 
-Handling Mouse clicks and keyboard events is also quiet easy inside Litebot.
-The only diference is these operations are async and done on a seperate thread so its vital to await them to avoid race conditions between clicks and keyboard presses,
+### `Mouse / Keyboard Clicks`
+
+Handling mouse clicks and keyboard presses is also quiet easy with Litebot.
+The only diference is these operations are done on a `seperate thread`. It is vital to `await` them to avoid race conditions between clicks and keyboard presses,
 
 ```ts
+import { setMousePos, mouseClick } from "https://deno.land/x/litebot/mod.ts";
+
 // left click at position 50, 100
 setMousePos(50, 100);
 await mouseClick();
@@ -126,6 +130,18 @@ await mouseClick({ x: -100, y: 100, leftClick: true });
 // or
 await mouseClick({ x: -100, y: 100 });
 ```
+
+### `Deno Flags`
+
+- --allow-env
+- --allow-read
+- --allow-ffi
+- --unstable
+
+If you want to clear the cache or upgrade tyhe release please use these flags.
+
+- `-- --nocache`
+- `-r`
 
 _For more examples, please refer to the [Documentation](https://doc.deno.land/https://deno.land/x/litebot/mod.ts)_
 

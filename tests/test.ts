@@ -15,7 +15,17 @@ async function run_tests() {
 	// run tests
 	for (const file of tests) {
 		const { stdout, status, stderr } = await Deno.spawn("deno", {
-			args: ["test", "-A", "--unstable", file, "--", "--nocache"],
+			args: [
+				"test",
+				"--allow-write",
+				"--allow-env",
+				"--allow-read",
+				"--allow-ffi",
+				"--unstable",
+				file,
+				"--",
+				"--nocache",
+			],
 			cwd: __dirname,
 		});
 
