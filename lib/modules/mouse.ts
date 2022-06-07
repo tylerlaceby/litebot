@@ -87,6 +87,17 @@ export type LitebotClickOptions = {
 	y?: number;
 };
 
+/** Async method for performing clicks acting as the4 user. This method is nonblocking so
+ * use await to avoid any race conditions with other mouse/keyboard operations.
+ * @example 
+ * // left click at position 50, 100
+	setMousePos(50, 100);
+	await mouseClick();
+	// right click at same position
+	await mouseClick({ leftClick: false });
+	// left click at -100, 100
+	await mouseClick({ x: -100, y: 100, leftClick: true });
+ */
 export const mouseClick = async (
 	options: LitebotClickOptions = { leftClick: true, ...getMousePos() }
 ): Promise<void> => {
