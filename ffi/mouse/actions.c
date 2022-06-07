@@ -6,12 +6,12 @@
 // -- MOUSE CLICKS & ACTIONS  --
 // -----------------------------
 
-int mouseClick(int left)
-{
+int mouseClick(int left) {
   DWORD downclick = (MOUSEEVENTF_ABSOLUTE | (left == 1 ? MOUSEEVENTF_LEFTDOWN : MOUSEEVENTF_RIGHTDOWN));
   DWORD upclick = (MOUSEEVENTF_ABSOLUTE | (left == 1 ? MOUSEEVENTF_LEFTUP : MOUSEEVENTF_RIGHTUP));
 
   INPUT input;
+  ZeroMemory(&input, sizeof(INPUT));
   input.type = INPUT_MOUSE;
   input.mi.dwFlags = downclick;
   input.mi.time = 0;

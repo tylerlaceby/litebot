@@ -17,15 +17,15 @@ import litebot from "./library.ts";
  * @returns {Cordinate} returns the cordinates of the mouse or values of -1 if the result failed.
  */
 export const getMousePos = (): Cordinate => {
-	// Pass a pointer from deno to C land. This pointer will then be written into
-	// from C if everything is successful in the system call.
+  // Pass a pointer from deno to C land. This pointer will then be written into
+  // from C if everything is successful in the system call.
 
-	// the values will remain [ 0 , 0 ] if there is an error.
-	const pointer = new Int32Array(2);
-	litebot.getMousePos(pointer);
-	// create cordinate from tuple.
-	const cords: Cordinate = { x: pointer[0], y: pointer[1] };
-	return cords;
+  // the values will remain [ 0 , 0 ] if there is an error.
+  const pointer = new Int32Array(2);
+  litebot.getMousePos(pointer);
+  // create cordinate from tuple.
+  const cords: Cordinate = { x: pointer[0], y: pointer[1] };
+  return cords;
 };
 
 /**
@@ -39,7 +39,7 @@ export const getMousePos = (): Cordinate => {
  * @param {number} y numeric value
  */
 export const setMousePos = (x: number, y: number): void => {
-	litebot.setMousePos(Math.floor(x), Math.floor(Math.abs(y)));
+  litebot.setMousePos(Math.floor(x), Math.floor(Math.abs(y)));
 };
 
 // ------------------------
@@ -60,7 +60,7 @@ export const setMousePos = (x: number, y: number): void => {
  */
 
 export const moveMouse = (x: number, y: number): void => {
-	litebot.moveMouse(Math.floor(x), Math.floor(y));
+  litebot.moveMouse(Math.floor(x), Math.floor(y));
 };
 
 /** Move the mouse up by a relative amount. */
@@ -71,7 +71,7 @@ export const mouseDown = (y: number): void => litebot.mouseDown(Math.floor(y));
 export const mouseLeft = (x: number): void => litebot.mouseLeft(Math.floor(x));
 /** Move the mouse right by a relative amount. */
 export const mouseRight = (x: number): void =>
-	litebot.mouseRight(Math.floor(x));
+  litebot.mouseRight(Math.floor(x));
 
 // ------------------------
 // ---- MOUSE CLICKS ------
@@ -82,14 +82,15 @@ export const mouseRight = (x: number): void =>
  * mouse position. If these are overidden then the mouse click will be at thye new x and y location.
  */
 export type LitebotClickOptions = {
-	leftClick?: boolean;
-	x?: number;
-	y?: number;
+  leftClick?: boolean;
+  x?: number;
+  y?: number;
 };
 
 /** Async method for performing clicks acting as the4 user. This method is nonblocking so
  * use await to avoid any race conditions with other mouse/keyboard operations.
- * @example 
+ * @async this method takes place on a seperate thread. Ensure you use async await when calling.
+ * @example
  * // left click at position 50, 100
 	setMousePos(50, 100);
 	await mouseClick();
@@ -99,21 +100,22 @@ export type LitebotClickOptions = {
 	await mouseClick({ x: -100, y: 100, leftClick: true });
  */
 export const mouseClick = async (
-	options: LitebotClickOptions = { leftClick: true, ...getMousePos() }
+  options: LitebotClickOptions = { leftClick: true, ...getMousePos() },
 ): Promise<void> => {
-	// handle default params
-	options ??= { leftClick: true };
-	options.leftClick ??= true;
+  // handle default params
+  options ??= { leftClick: true };
+  options.leftClick ??= true;
 
-	// only if one is undefined then get the cordinates.
-	if (options.y == undefined || options.x == undefined) {
-		const { x, y } = getMousePos();
-		options.x ??= x;
-		options.y ??= y;
-	}
+  // only if one is undefined then get the cordinates.
+  if (options.y == undefined || options.x == undefined) {
+    const { x, y } = getMousePos();
+    options.x ??= x;
+    options.y ??= y;
+  }
 
-	// Move mouse before performing click.
-	setMousePos(options.x, options.y);
-	const mode = options.leftClick ? 1 : -1;
-	await litebot.mouseClick(mode);
+  // Move mouse before performing click.
+  setMousePos(options.x, options.y);
+  const mode = options.leftClick ? 1 : -1;
+  await litebot.mouseClick(mode);
 };
+

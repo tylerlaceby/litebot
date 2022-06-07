@@ -1,8 +1,8 @@
 import {
-	join,
-	sep,
-	dirname,
-	fromFileUrl,
+  dirname,
+  fromFileUrl,
+  join,
+  sep,
 } from "https://deno.land/std@0.142.0/path/mod.ts";
 export const __dirname = dirname(fromFileUrl(import.meta.url));
 import { compile_binaries } from "./compile-lib.ts";
@@ -15,17 +15,17 @@ const INPUT_DIR = join(__dirname, "..", "ffi");
 console.log("\n -- Compiling Library -- ");
 const win = await compile_binaries(OUTPUT_FOLDER, INPUT_DIR);
 
-if (win)
-	console.log(
-		"%c\n-- Compilation of library 100% successful",
-		"color: paleturquoise"
-	);
-else {
-	console.log(
-		`\n-- Could not satisy all compilation targets\n Could not compile targets`,
-		"color: red; text-decoration: underline"
-	);
-	Deno.exit(1);
+if (win) {
+  console.log(
+    "%c\n-- Compilation of library 100% successful",
+    "color: paleturquoise",
+  );
+} else {
+  console.log(
+    `\n-- Could not satisy all compilation targets\n Could not compile targets`,
+    "color: red; text-decoration: underline",
+  );
+  Deno.exit(1);
 }
 
 // lastly move the version of readme into the /lib folder
@@ -37,6 +37,6 @@ const { status, stderr, stdout } = await Deno.spawn("./test.exe");
 console.log(new TextDecoder().decode(stdout));
 console.log(new TextDecoder().decode(stderr));
 
-if (status.success)
-	console.log("%cResults:\n-- Ready for deployment", "color: cyan");
-else console.log("Issues occured when running tests.");
+if (status.success) {
+  console.log("%cResults:\n-- Ready for deployment", "color: cyan");
+} else console.log("Issues occured when running tests.");
