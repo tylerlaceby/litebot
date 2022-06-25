@@ -6,7 +6,8 @@
 // -- MOUSE CLICKS & ACTIONS  --
 // -----------------------------
 
-int mouseClick(int left) {
+int mouseClick(int left, int clickDelay)
+{
   DWORD downclick = (MOUSEEVENTF_ABSOLUTE | (left == 1 ? MOUSEEVENTF_LEFTDOWN : MOUSEEVENTF_RIGHTDOWN));
   DWORD upclick = (MOUSEEVENTF_ABSOLUTE | (left == 1 ? MOUSEEVENTF_LEFTUP : MOUSEEVENTF_RIGHTUP));
 
@@ -21,7 +22,7 @@ int mouseClick(int left) {
   if (sent != 1)
     return -1;
 
-  Sleep(10);
+  Sleep(clickDelay);
   input.mi.dwFlags = upclick;
   sent = SendInput(1, &input, sizeof(INPUT));
 

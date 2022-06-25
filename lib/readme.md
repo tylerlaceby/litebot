@@ -78,13 +78,13 @@ to use some common Litebot functions.
 
 ```ts
 import {
-  getMousePos,
-  mouseDown,
-  mouseLeft,
-  mouseRight,
-  mouseUp,
-  moveMouse,
-  setMousePos,
+	getMousePos,
+	mouseDown,
+	mouseLeft,
+	mouseRight,
+	mouseUp,
+	moveMouse,
+	setMousePos,
 } from "https://deno.land/x/litebot/mod.ts";
 
 // Get current position of mouse
@@ -127,6 +127,9 @@ await mouseClick();
 
 // right click at same position
 await mouseClick({ leftClick: false });
+
+// we can also add delay to out click's by setting the delay property. This will effect how many ms elapse between the downClick and upClick.
+await mouseClick({ delay: 50 }); // waits 50ms between down and up.
 
 // left click at -100, 100
 await mouseClick({ x: -100, y: 100, leftClick: true });
@@ -233,4 +236,5 @@ Project Link:
 [linkedin-url]: https://linkedin.com/in/tyler-laceby-b94b27157
 
 ```
+
 ```
